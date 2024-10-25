@@ -1,0 +1,33 @@
+files <- list.files(pattern = "\\.nc$", recursive = FALSE)
+k <- substr(files,2,5)
+args <- files
+a <- substr(args,6,8)
+b <- substr(args,13,15)
+
+source_dir <- "/nesi/project/niwa00020/Haywarda/MLD/MO_Kara/"
+destination_dir <- "/nesi/project/niwa03483/Months2/"
+
+months <- list(
+  Jan = "001",
+  Feb = "032",
+  March = c("060","061"),
+  April = c("091","092"),
+  May = c("121","122"),
+  June = c("152","153"),
+  July = c("182","183"),
+  Aug = c("213","214"),
+  Sep = c("244","245"),
+  Oct = c("274","275"),
+  Nov = c("305","306"),
+  Dec = c("335","336")
+)
+
+# Loop over each month
+for (month in names(months)) {
+  
+  # Get the corresponding days for the month
+  days <- months[[month]]
+    spa <- a %in% days  
+    n <- which(spa == TRUE)
+file.copy(from = paste0(source_dir,files[n]), to = paste0(destination_dir,month,"/",files[n]), overwrite = TRUE)
+    }
