@@ -20,7 +20,7 @@ models <- list()
 # Train a model for each variable
 for (var in variables) {
   # Define cross-validation parameters
-  cvIndex <- createFolds(factor(data$Voyage), k = 10, returnTrain = TRUE)
+  cvIndex <- groupKFold(data$Voyage, k = 10,returnTrain = TRUE)
   train_control <- trainControl(method = "cv", number = 10, index = cvIndex)
   
   # Prepare dataset for modeling with the current target variable
