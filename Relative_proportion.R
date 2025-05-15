@@ -23,12 +23,12 @@ Mnth <- substr(nd, 5, 6)              # Extract month
 
 # Load necessary NetCDF files
 Diatom <- nc_open(args)
-Green <- nc_open(paste("/nesi/project/niwa00020/Haywarda/Green/MO/", "P", d, "_Green.nc", sep=""))
-Crypto <- nc_open(paste("/nesi/project/niwa00020/Haywarda/Crypto/MO/", "P", d, "_Crypto.nc", sep=""))
-Syn <- nc_open(paste("/nesi/project/niwa00020/Haywarda/Syn/MO/", "P", d, "_Syn.nc", sep=""))
-Pelago <- nc_open(paste("/nesi/project/niwa00020/Haywarda/Pelago/MO/", "P", d, "_Pelago.nc", sep=""))
-Hapto <- nc_open(paste("/nesi/project/niwa00020/Haywarda/Hapto/MO/", "P", d, "_Hapto.nc", sep=""))
-Dino <- nc_open(paste("/nesi/project/niwa00020/Haywarda/Dino/MO/", "P", d, "_Dino.nc", sep=""))
+Green <- nc_open(paste("", "P", d, "_Green.nc", sep=""))
+Crypto <- nc_open(paste("", "P", d, "_Crypto.nc", sep=""))
+Syn <- nc_open(paste("", "P", d, "_Syn.nc", sep=""))
+Pelago <- nc_open(paste("", "P", d, "_Pelago.nc", sep=""))
+Hapto <- nc_open(paste("", "P", d, "_Hapto.nc", sep=""))
+Dino <- nc_open(paste("", "P", d, "_Dino.nc", sep=""))
 
 # Get latitude and longitude from one of the datasets
 lat <- ncvar_get(Green, "lat")
@@ -75,7 +75,7 @@ dlname <- "SUM"
 tmp_def <- ncvar_def("SUM", "Chla ug/L", list(xdim, ydim), fillvalue, dlname, prec="single")
 
 # Set working directory and create NetCDF file
-setwd("/nesi/project/niwa00020/Haywarda/Sum")
+setwd("")
 ncfname <- paste("P", d, "_SUM", ".nc", sep="")
 ncout <- nc_create(ncfname, list(tmp_def), force_v4=TRUE)
 
@@ -94,7 +94,7 @@ nc_close(ncout)
 # Function to handle processing for each species
 processSpecies <- function(species_name, species_var) {
   # Open the corresponding NetCDF file
-  species_data <- nc_open(paste0("/nesi/project/niwa00020/Haywarda/", species_name, "/MO/P", d, "_", species_name, ".nc"))
+  species_data <- nc_open(paste0("", species_name, "/MO/P", d, "_", species_name, ".nc"))
   
   # Get species values
   species_values <- createRasterValues(ncvar_get(species_data, species_var))
@@ -118,7 +118,7 @@ processSpecies <- function(species_name, species_var) {
   tmp_def <- ncvar_def(dlname, "Chla ug/L", list(xdim, ydim), fillvalue, dlname, prec="single")
   
   # Set working directory for output
-  setwd(paste0("/nesi/project/niwa00020/Haywarda/", dlname, "/MO/"))
+  setwd(paste0("", dlname, "/MO/"))
   ncfname <- paste("P", d, "_", dlname, ".nc", sep="")
   
   # Create and write to NetCDF file
