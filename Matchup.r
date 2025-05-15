@@ -9,7 +9,7 @@ library(hutilscpp, lib = "Packages/")
 library(plyr, lib = "Packages/")
 
 # Set working directory to location of NetCDF files
-setwd("/nesi/project/niwa00020/Haywarda/Ecco/NO3_9_nc/")
+setwd("")
 # List all NetCDF files in directory
 temp <- list.files(pattern = "*.nc")
 
@@ -24,8 +24,8 @@ date <- as.Date(split, format = "%Y%j")
 split <- format(date, "%Y%m%d")
 
 # Load metadata file and organize data by date
-setwd("/nesi/project/niwa03483/Satellite_functions/")
-MD <- read.csv("ODV_LatLon_Nov.csv", header = TRUE)
+setwd("")
+MD <- read.csv("", header = TRUE)
 D <- as.numeric(MD$Date)
 Date <- MD[[5]]
 MD <- data.frame(MD)
@@ -45,7 +45,7 @@ for (i in D2) {
 b <- unique(unlist(b))
 
 # Set working directory back to source files, open and load NetCDF data
-setwd("/nesi/project/niwa00020/Haywarda/Ecco/NO3_9_nc/")
+setwd("")
 Res <- lapply(myFiles.correct.order[b], function(i) {
   nc_open(i)
 })
@@ -143,5 +143,5 @@ boxed <- queen_extractor(Res)
 single <- unlist(gr)
 boxed <- unlist(boxed)
 testering <- cbind(MD2a, single, boxed)
-setwd("/nesi/project/niwa03483/Satellite_functions/")
-write.csv(testering, "New_NO3.csv")
+setwd("")
+write.csv(testering, "")
