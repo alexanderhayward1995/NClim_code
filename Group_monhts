@@ -4,8 +4,8 @@ args <- files
 a <- substr(args,6,8)
 b <- substr(args,13,15)
 
-source_dir <- "/nesi/project/niwa00020/Haywarda/MLD/MO_Kara/"
-destination_dir <- "/nesi/project/niwa03483/Months2/"
+source_dir <- ""
+destination_dir <- ""
 
 months <- list(
   Jan = "001",
