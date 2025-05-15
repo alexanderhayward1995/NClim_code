@@ -51,7 +51,7 @@ calculate_anomaly <- function(variable_name, variable_label) {
   s2 <- get_month_names(Mnth)
   
   # Open reference month data
-  C <- nc_open(paste0("/nesi/project/niwa03483/Months3/", s2, "/Complete/", variable_name, "_", s2, ".nc"))
+  C <- nc_open(paste0("/", s2, "/Complete/", variable_name, "_", s2, ".nc"))
   D <- Nuts(ncvar_get(C, variable_name))  # Extract reference data
   
   # Calculate anomaly as the difference
@@ -73,7 +73,7 @@ calculate_anomaly <- function(variable_name, variable_label) {
   
   # Create netCDF variable and file for output
   tmp_def <- ncvar_def(variable_name, variable_label, list(xdim, ydim), fillvalue, variable_label, prec = "single")
-  setwd(paste0("/nesi/project/niwa00020/Haywarda/", variable_name, "/MA"))
+  setwd(paste0("", variable_name, "/MA"))
   ncfname <- paste("P", d, "_", variable_name, "_Anom", ".nc", sep = "")
   
   ncout <- nc_create(ncfname, list(tmp_def), force_v4 = TRUE)
@@ -99,5 +99,5 @@ for (variable in names(variables)) {
 
 # Close the main netCDF connection
 nc_close(A)
-setwd("/nesi/project/niwa03483/Satellite_functions/")
+setwd("")
 
