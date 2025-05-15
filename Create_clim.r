@@ -5,7 +5,7 @@ months=("Jan" "Feb" "March" "April" "May" "June" "July" "Aug" "Sep" "Oct" "Nov" 
 module load CDO
 
 # Define the base project directory
-project_dir="/nesi/project/niwa03483/Months3"
+project_dir=""
 
 # Loop over the months and execute the commands
 for month in "${months[@]}"
