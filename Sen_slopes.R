@@ -1,5 +1,5 @@
 # Load required libraries
-setwd("/nesi/project/niwa03483/Satellite_functions")
+setwd("")
 
 library(raster)
 library(tidyverse, lib = "Packages/")
@@ -13,7 +13,7 @@ library(modifiedmk, lib = "Packages/")
 
 Create_New <- function(groups) {
   # Set working directory and get list of .nc files
-  setwd("/nesi/project/niwa00020/Haywarda/OCchl/MA/")
+  setwd("")
   nc_files <- list.files(pattern = ".nc")
   
   # Set up parallel processing
@@ -48,7 +48,7 @@ Create_New <- function(groups) {
   Summer <- which(file_month_mapping %in% c('Dec', 'Jan', 'Feb'))
   
   # Stack raster files for Summer season and crop to new extent
-  setwd("/nesi/project/niwa00020/Haywarda/OCchl/MA/")
+  setwd("")
   raster_stack <- stack(nc_files[Summer], varname = groups)
   new_extent <- extent(raster_stack)
   new_extent@ymin <- -90
